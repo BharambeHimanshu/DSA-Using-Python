@@ -47,7 +47,7 @@ def maximum_subarray(nums):
     for i in range(0,n):
         total = total + nums[i]
         maxi = max(total,maxi)
-        if total < 0:
+        if total <  0:
             total = 0   #reset total if value is in -
     return maxi
 
