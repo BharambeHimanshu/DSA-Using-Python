@@ -1,6 +1,6 @@
 # Lower and Upper Bound
 
-# Lower Bound [smallest index such that nums[i]>= target]
+# Lower Bound [smallest index such that nums[i]>= target]   TC -> o(log2n)    SC -> o(1)
 
 nums = [1,1,2,3,4,5,6,6,7,8,9]
 target = 2
@@ -23,7 +23,7 @@ def lowerbound(nums,target):
 print(lowerbound(nums,target))
 
 
-# Upper Bound
+# Upper Bound   [smallest index such that nums[i]> target]   TC -> o(log2n)    SC -> o(1)
 nums = [1,1,2,3,4,5,6,6,7,8,9]
 target = 2
 
