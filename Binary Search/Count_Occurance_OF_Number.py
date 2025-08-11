@@ -18,7 +18,7 @@ Output: 3
 Explanation: target = 12 occurs 3 times in the given array so the output is 3
 '''
 
-# Brute Force Solution       TC -> o(logn)   SC -> o(1)
+# Brute Force Solution       TC -> o(N)   SC -> o(1)
 
 nums = [5,7,7,8,8, 8, 10]
 target = 8
@@ -34,3 +34,52 @@ def countNo(nums,target):
     return last - first + 1
 
 print(countNo(nums,target))
+
+# Optimal Solution Using lower and upper bound   TC -> o(logn)     SC -> o(1)
+
+nums= [1, 1, 2, 2, 2, 2, 3]
+target = 2
+
+class Solution:
+    def lower_bound(self, nums, target):
+        n = len(nums)
+        lb = -1  # Default value if target is not found
+        low, high = 0, n - 1
+
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] >= target:
+                lb = mid  # Possible lower bound found
+                high = mid - 1  # Search left for first occurrence
+            else:
+                low = mid + 1
+
+        return lb
+
+    def upper_bound(self, nums, target):
+        n = len(nums)
+        ub = n  # Default value if target is greater than all elements
+        low, high = 0, n - 1
+
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] > target:
+                ub = mid  # Possible upper bound found
+                high = mid - 1  # Search left for first element > target
+            else:
+                low = mid + 1
+
+        return ub
+
+    def countFreq(self, nums, target):
+        lb = self.lower_bound(nums, target)
+        if lb == -1 or nums[lb] != target:
+            return 0  # Target is not found in the array
+
+        ub = self.upper_bound(nums, target)
+        return ub - lb  # Count of occurrences
+
+sol = Solution()
+print(sol.countFreq(nums, target))    
+
+
