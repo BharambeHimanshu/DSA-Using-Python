@@ -89,4 +89,4 @@ class Solution:
         return [ext_left, ext_right]
     
 sol = Solution()
-print(sol.searchRange(nums, target))
+print(sol.searchRange(nums, target))    

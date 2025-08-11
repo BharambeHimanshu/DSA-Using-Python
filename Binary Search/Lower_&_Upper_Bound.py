@@ -27,7 +27,7 @@ print(lowerbound(nums,target))
 nums = [1,1,2,3,4,5,6,6,7,8,9]
 target = 2
 
-def lowerbound(nums,target):
+def upperbound(nums,target):
     n = len(nums)
     low = 0
     high = n-1
@@ -42,4 +42,4 @@ def lowerbound(nums,target):
             low = mid + 1
     return ub
 
-print(lowerbound(nums,target))
+print(upperbound(nums,target))
