@@ -21,6 +21,7 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 class Solution:
     def reverseList(self, head):
         temp = head
@@ -31,7 +32,29 @@ class Solution:
             prev = temp
             temp = front
         return prev
-    
+
+
+# Helper function to create linked list from Python list
+def create_linked_list(arr):
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    curr = head
+    for val in arr[1:]:
+        curr.next = ListNode(val)
+        curr = curr.next
+    return head
+
+# Helper function to print linked list
+def print_linked_list(head):
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    print(result)
+
+
 sll = Solution()
-head = [1,2,3,4,5,6]
-print(sll.reverseList())
+head = create_linked_list([1, 2, 3, 4, 5, 6])
+reversed_head = sll.reverseList(head)
+print_linked_list(reversed_head)
