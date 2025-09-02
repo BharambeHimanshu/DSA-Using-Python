@@ -33,7 +33,7 @@ print(singlenumber(nums))
 
 
 # Optimal Solution       TC -> o(N)           SC ->o(1)
-# Using the XOR operator and Shift Operator
+# Using the XOR operator
 
 nums = [2,2,1]
 def SingleNumber(nums):
