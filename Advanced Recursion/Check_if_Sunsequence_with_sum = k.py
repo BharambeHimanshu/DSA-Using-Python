@@ -10,8 +10,6 @@ Output:  No
 Explanation:  No subsequence can sum upto 100
 '''
 
-# If we want to print only one subset
-
 def backtrack(subset, index, total):
     if total == target:
         # result.append(subset.copy())  # Uncomment if you want to collect the subset
@@ -34,6 +32,9 @@ def backtrack(subset, index, total):
 
 nums = [1, 2, 3, 4, 3, 2, 1, 1, 1, 1]
 target = 3
-print(backtrack([], 0, 0))          
+print(backtrack([], 0, 0))
+
+
+
 
 
