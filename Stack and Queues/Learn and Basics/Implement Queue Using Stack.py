@@ -1,35 +1,38 @@
 # Implement Queue(FIFO) Using  2 Stack(LIFO)
 
-from collections import deque
-
-class MyStack:
+class MyQueue:
     def __init__(self):
-        self.q1 = deque()  # Main queue
-        self.q2 = deque()  # Helper queue
-    
-    def push(self, x):
-        self.q2.append(x)  # Add new element to helper
-        # Move all from main to helper
-        while self.q1:
-            self.q2.append(self.q1.popleft())
-        # Swap: helper becomes main
-        self.q1, self.q2 = self.q2, self.q1
-    
-    def pop(self):
-        return self.q1.popleft()  # Remove front (top of stack)
-    
-    def top(self):
-        return self.q1[0]  # Peek front
-    
-    def empty(self):
-        return len(self.q1) == 0  # Check if main is empty
-    
-stack = MyStack()
-stack.push(10)
-stack.push(20)
-stack.push(30)
-print("element popped : ",stack.pop())
-print("Top element", stack.top())
-stack.push(50)
-print("element popped : ",stack.pop())
-print("Top element", stack.top())
+        # Two stacks: in_stack (for push), out_stack (for pop/peek)
+        self.in_stack = []
+        self.out_stack = []
+
+    def push(self, x: int) -> None:
+        # Add to in_stack (end of queue)
+        self.in_stack.append(x)
+
+    def pop(self) -> int:
+        # Pop from out_stack (front of queue)
+        self.peek()  # Ensure out_stack has the current items
+        return self.out_stack.pop()
+
+    def peek(self) -> int:
+        # Get the front element
+        if not self.out_stack:
+            # Transfer all from in_stack to out_stack if needed, reversing order
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+        return self.out_stack[-1]
+
+    def empty(self) -> bool:
+        # Queue is empty only if both stacks are empty
+        return not self.in_stack and not self.out_stack
+
+queue = MyQueue()
+queue.push(10)
+queue.push(20)
+queue.push(30)
+print("element popped : ",queue.pop())
+print("Top element", queue.peek())
+queue.push(50)
+print("element popped : ",queue.pop())
+print("Top element", queue.peek())
